@@ -40,7 +40,7 @@ modern design languages/trends. Includes Hero, About, Experience, Featured Work
 - Canva mosaic gallery for Namaste Democracy thumbnails.
 - Backend tested 8/8 passing.
 
-**2026-05-03 — Dispatches refresh + bespoke covers**
+**2026-05-03 — Dispatches refresh + bespoke covers + sticky CTA**
 - Swapped Sun Pharma off lead → **Blackstone $4B (lead)**, then QXO $17B,
   Amazon×Google, Sun Pharma, UK Anthropic, US oil/Iran (6 cards total).
 - Added new QXO/TopBuild $17B story.
@@ -52,6 +52,9 @@ modern design languages/trends. Includes Hero, About, Experience, Featured Work
   override the designed cover automatically.
 - Added matching bespoke posters for the 3 Civic Lens reels (cl1/cl2/cl3) in
   `OnCamera.jsx` — *READ THE DRAMA*, *WEEKLY DROP*, *ON THE GROUND*.
+- Added a **sticky "Get in touch" byline** (`StickyContact.jsx`, mounted in
+  `Portfolio.jsx`) — slides in after the hero scrolls past, auto-hides over
+  the Contact section so it never overlaps the form.
 
 ## Known constraint (won't fix at code level)
 - Reuters and Instagram **block this datacenter's egress IP at the network

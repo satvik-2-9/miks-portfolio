@@ -8,6 +8,7 @@ import OnCamera from "../components/portfolio/OnCamera";
 import ExpertiseEdu from "../components/portfolio/ExpertiseEdu";
 import Contact from "../components/portfolio/Contact";
 import Footer from "../components/portfolio/Footer";
+import StickyContact from "../components/portfolio/StickyContact";
 import { Toaster } from "../components/ui/toaster";
 
 export default function Portfolio() {
@@ -24,6 +25,7 @@ export default function Portfolio() {
         <Contact />
       </main>
       <Footer />
+      <StickyContact />
       <Toaster />
     </div>
   );
