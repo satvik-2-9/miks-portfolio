@@ -72,6 +72,29 @@ export default function Experience() {
                     </li>
                   ))}
                 </ul>
+
+                {job.highlight && (
+                  <a
+                    href={job.highlight.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-6 inline-flex items-stretch border border-ink bg-paper hover:bg-ink hover:text-paper transition-colors duration-300 group/hl"
+                  >
+                    <span className="flex items-baseline gap-1 px-5 py-3 bg-oxblood text-paper">
+                      <span className="font-display text-[28px] leading-none">{job.highlight.metric.split(" ")[0]}</span>
+                      <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-90">{job.highlight.metric.split(" ").slice(1).join(" ")}</span>
+                    </span>
+                    <span className="flex flex-col justify-center px-5 py-3">
+                      <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-ink/55 group-hover/hl:text-paper/70">
+                        {job.highlight.label}
+                      </span>
+                      <span className="font-serifText italic text-[14px] leading-tight mt-0.5 inline-flex items-center gap-1.5">
+                        Watch the reel
+                        <ArrowUpRight size={13} />
+                      </span>
+                    </span>
+                  </a>
+                )}
               </div>
             </li>
           ))}

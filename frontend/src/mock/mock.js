@@ -20,9 +20,9 @@ export const profile = {
   secondaryParagraph:
     "I've handled communications for \u0024110B+ mega\u2011deals, briefed Tier\u20111 firms like NVIDIA and Google, and built digital brand identities for Shark Tank India startups. My work lives where rigorous reporting, crisis communications and design\u2011minded storytelling meet.",
   stats: [
+    { value: "1.3M+", label: "Top reel views \u00B7 Namaste Democracy" },
     { value: "80+", label: "Filed stories at Reuters" },
-    { value: "$110B", label: "M&A coverage managed" },
-    { value: "24/7", label: "Global wire cadence" },
+    { value: "\u0024110B", label: "M&A coverage managed" },
     { value: "100%", label: "First\u2011to\u2011file accuracy" },
   ],
 };
@@ -53,6 +53,25 @@ export const experience = [
     ],
   },
   {
+    id: "namaste",
+    company: "Namaste Democracy",
+    role: "Broadcast Journalist & Content Strategist",
+    dates: "Mar 2024 \u2014 Aug 2024",
+    location: "Bangalore, India",
+    kicker: "On\u2011Air Talent \u00B7 Editorial Production",
+    link: { label: "Reels on Instagram", href: "https://www.instagram.com/namastedemocracy/reels/" },
+    highlight: {
+      metric: "1.3M+ views",
+      label: "Top performing reel",
+      href: "https://www.instagram.com/reel/C7WaZ8uPeyN/",
+    },
+    bullets: [
+      "Spearheaded end\u2011to\u2011end broadcast production as primary on\u2011air talent, delivering high\u2011impact news segments with professional\u2011grade video editing and visual storytelling.",
+      "Wrote, anchored and produced reels that crossed 1.3M+ views \u2014 translating civic and political stories into short\u2011form formats with proven retention.",
+      "Orchestrated the full content lifecycle \u2014 from research and conceptualization to final production \u2014 ensuring every segment aligned with brand identity and audience trends.",
+    ],
+  },
+  {
     id: "civiclens",
     company: "Civic Lens",
     role: "Founder \u00B7 Creator & Producer",
@@ -65,18 +84,6 @@ export const experience = [
       "Built the brand identity from scratch \u2014 visual language, tone of voice, content pillars and a distinctive explainer format for urban affairs and civic literacy.",
       "Produce Reels that translate complex policy, governance and city\u2011planning issues into retention\u2011optimised, short\u2011form storytelling for a scrolling audience.",
       "Operates end\u2011to\u2011end as a one\u2011person newsroom \u2014 demonstrating ownership across editorial, creative direction, production and digital growth.",
-    ],
-  },
-  {
-    id: "namaste",
-    company: "Namaste Democracy",
-    role: "Broadcast Journalist & Content Strategist",
-    dates: "Mar 2024 \u2014 Aug 2024",
-    location: "Bangalore, India",
-    kicker: "On\u2011Air Talent \u00B7 Editorial Production",
-    bullets: [
-      "Spearheaded end\u2011to\u2011end broadcast production as primary on\u2011air talent, delivering high\u2011impact news segments with professional\u2011grade video editing and visual storytelling.",
-      "Orchestrated the full content lifecycle \u2014 from research and conceptualization to final production \u2014 ensuring every segment aligned with brand identity and audience trends.",
     ],
   },
   {
