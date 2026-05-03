@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-ink/60 border-b border-ink/15 pb-3">
           <span>FRONT PAGE · A1</span>
           <span className="hidden sm:inline">COMMUNICATIONS · JOURNALISM · MARKETS</span>
-          <span>EDITION ’25</span>
+          <span>EDITION ’26</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 pt-10 md:pt-14">

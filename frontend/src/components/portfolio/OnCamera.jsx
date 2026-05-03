@@ -218,21 +218,42 @@ export default function OnCamera() {
             const isReel = m.type === "reel";
             const isLong = m.type === "long";
             const isArticle = m.type === "article";
+            const ytThumb = m.youtubeId
+              ? `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg`
+              : null;
 
             return (
-              <article key={m.id} className="group">
+              <a
+                key={m.id}
+                href={m.href || "#"}
+                target="_top"
+                rel="noopener noreferrer"
+                className="group block"
+              >
                 <div className="relative overflow-hidden aspect-[4/5] bg-ink cursor-pointer">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: isReel
-                        ? "linear-gradient(145deg, #1a1a1a 0%, #3a1818 45%, #7c1e22 100%)"
-                        : isLong
-                        ? "linear-gradient(120deg, #141414 0%, #2a2220 60%, #4a2a20 100%)"
-                        : "linear-gradient(160deg, #1c1c1c 0%, #222 70%)",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_55%)]" />
+                  {/* Backdrop \u2014 YouTube thumbnail when available, gradient otherwise */}
+                  {ytThumb ? (
+                    <img
+                      src={ytThumb}
+                      alt={m.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: isReel
+                            ? "linear-gradient(145deg, #1a1a1a 0%, #3a1818 45%, #7c1e22 100%)"
+                            : "linear-gradient(160deg, #1c1c1c 0%, #222 70%)",
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_55%)]" />
+                    </>
+                  )}
+                  {/* Slight shade overlay so text reads */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent" />
 
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between font-mono text-[9px] tracking-[0.3em] text-paper/85">
                     <span className="inline-flex items-center gap-1 bg-ink/60 backdrop-blur px-2 py-1">
@@ -253,7 +274,7 @@ export default function OnCamera() {
                     </div>
                   )}
 
-                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-paper bg-gradient-to-t from-ink/85 via-ink/40 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-paper">
                     <div className="font-mono text-[9px] tracking-[0.3em] text-oxblood-light uppercase mb-1.5">
                       {m.outlet}
                     </div>
@@ -268,9 +289,11 @@ export default function OnCamera() {
                     <PlatformIcon type={m.type} platform={m.platform} size={10} />
                     {m.type === "reel" ? "Reel" : m.type === "long" ? "Video" : "Essay"}
                   </span>
-                  <span className="truncate ml-2">{m.category}</span>
+                  <span className="truncate ml-2 text-ink/55 group-hover:text-oxblood transition-colors inline-flex items-center gap-1">
+                    {m.category} <ArrowUpRight size={10} />
+                  </span>
                 </div>
-              </article>
+              </a>
             );
           })}
         </div>

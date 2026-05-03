@@ -22,7 +22,13 @@ export default function FeaturedWork() {
         </div>
 
         {/* Lead story */}
-        <article className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-y border-ink/15 py-10 cursor-pointer">
+        {/* Lead story */}
+        <a
+          href={lead.href}
+          target="_top"
+          rel="noopener noreferrer"
+          className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-y border-ink/15 py-10 cursor-pointer"
+        >
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden bg-ink">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%),linear-gradient(135deg,#1a1a1a,#2a1212_60%,#1a1a1a)]" />
@@ -36,7 +42,7 @@ export default function FeaturedWork() {
             </div>
           </div>
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood">{lead.category} · {lead.outlet}</div>
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood">{lead.category} &middot; {lead.outlet}</div>
             <h3 className="mt-4 font-display text-[32px] md:text-[44px] leading-[1.05] tracking-[-0.01em] text-ink group-hover:text-oxblood transition-colors duration-300">
               {lead.headline}
             </h3>
@@ -48,18 +54,21 @@ export default function FeaturedWork() {
               <span className="w-6 h-px bg-ink/25" />
               <span className="inline-flex items-center gap-1"><Clock size={12} /> {lead.readTime}</span>
               <span className="ml-auto inline-flex items-center gap-1 text-ink group-hover:text-oxblood">
-                Read <ArrowUpRight size={14} />
+                Read on Reuters <ArrowUpRight size={14} />
               </span>
             </div>
           </div>
-        </article>
+        </a>
 
         {/* Grid of remaining */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-ink/15 mt-2">
           {rest.map((a, idx) => (
-            <article
+            <a
               key={a.id}
-              className={`group p-6 md:p-8 border-b border-ink/15 ${idx % 3 !== 2 ? "lg:border-r" : ""} ${idx % 2 === 0 ? "md:border-r" : ""} hover:bg-cream transition-colors duration-300 cursor-pointer`}
+              href={a.href}
+              target="_top"
+              rel="noopener noreferrer"
+              className={`group p-6 md:p-8 border-b border-ink/15 ${idx % 3 !== 2 ? "lg:border-r" : ""} ${idx % 2 === 0 ? "md:border-r" : ""} hover:bg-cream transition-colors duration-300 cursor-pointer block`}
             >
               <div className="flex items-center justify-between mb-5">
                 <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood">{a.category}</span>
@@ -72,10 +81,10 @@ export default function FeaturedWork() {
               <div className="mt-5 flex items-center justify-between font-mono text-[10px] tracking-[0.25em] uppercase text-ink/55">
                 <span>{a.outlet}</span>
                 <span className="inline-flex items-center gap-1 text-ink group-hover:text-oxblood">
-                  {a.readTime} <ArrowUpRight size={12} />
+                  Read <ArrowUpRight size={12} />
                 </span>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>

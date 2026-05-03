@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, Request, HTTPException, BackgroundTasks
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -12,6 +12,7 @@ import uuid
 import logging
 import hashlib
 import resend
+import httpx
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / ".env")
@@ -38,6 +39,7 @@ ALLOWED_EVENTS = {
 }
 
 RESUME_PATH = ROOT_DIR / "static" / "mihika-resume.pdf"
+RESUME_DRIVE_FILE_ID = os.environ.get("RESUME_DRIVE_FILE_ID", "")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -188,11 +190,56 @@ async def post_track(payload: TrackEvent, request: Request):
     return {"ok": True}
 
 
+async def fetch_drive_pdf() -> Optional[bytes]:
+    """Fetch the latest PDF from Google Drive. Handles small-file direct download
+    and the 'are you sure' confirm token for larger files."""
+    if not RESUME_DRIVE_FILE_ID:
+        return None
+    base = "https://drive.google.com/uc?export=download"
+    try:
+        async with httpx.AsyncClient(follow_redirects=True, timeout=15.0) as client:
+            r = await client.get(base, params={"id": RESUME_DRIVE_FILE_ID})
+            ctype = r.headers.get("content-type", "")
+            if "pdf" in ctype.lower() and r.content[:5] == b"%PDF-":
+                return r.content
+            # If Drive returned an HTML "virus scan" interstitial, follow with confirm token
+            if "text/html" in ctype.lower():
+                import re
+                m = re.search(r'name="confirm"\s+value="([^"]+)"', r.text)
+                if m:
+                    confirm = m.group(1)
+                    r2 = await client.get(base, params={"id": RESUME_DRIVE_FILE_ID, "confirm": confirm})
+                    if r2.content[:5] == b"%PDF-":
+                        return r2.content
+                # Try the direct usercontent endpoint
+                r3 = await client.get(
+                    "https://drive.usercontent.google.com/download",
+                    params={"id": RESUME_DRIVE_FILE_ID, "export": "download", "confirm": "t"},
+                )
+                if r3.content[:5] == b"%PDF-":
+                    return r3.content
+    except Exception as e:
+        logger.warning(f"Drive fetch failed: {e}")
+    return None
+
+
 @api_router.get("/resume")
 async def get_resume(request: Request):
-    if not RESUME_PATH.exists():
-        raise HTTPException(status_code=404, detail="Resume not found")
-    # Increment counter (best-effort)
+    # Try fresh fetch first; fall back to cached local copy
+    pdf_bytes = await fetch_drive_pdf()
+    if pdf_bytes:
+        # Update cache for resilience
+        try:
+            RESUME_PATH.parent.mkdir(parents=True, exist_ok=True)
+            RESUME_PATH.write_bytes(pdf_bytes)
+        except Exception as e:
+            logger.warning(f"resume cache write failed: {e}")
+    elif RESUME_PATH.exists():
+        pdf_bytes = RESUME_PATH.read_bytes()
+    else:
+        raise HTTPException(status_code=503, detail="Resume currently unavailable")
+
+    # Increment counter (best-effort) and log event
     try:
         await db.meta.update_one(
             {"_id": "resume_downloads"},
@@ -204,17 +251,21 @@ async def get_resume(request: Request):
                 "id": str(uuid.uuid4()),
                 "event": "download_cv",
                 "section": "resume",
-                "meta": {},
+                "meta": {"source": "drive_live" if pdf_bytes is not None else "cache"},
                 "at": utcnow(),
                 "ip_hash": hash_ip(client_ip(request)),
             }
         )
     except Exception as e:
         logger.warning(f"resume counter failed: {e}")
-    return FileResponse(
-        path=str(RESUME_PATH),
+
+    return Response(
+        content=pdf_bytes,
         media_type="application/pdf",
-        filename="Mihika-Sharma-Resume.pdf",
+        headers={
+            "Content-Disposition": 'attachment; filename="Mihika-Sharma-Resume.pdf"',
+            "Cache-Control": "no-store",
+        },
     )
 
 

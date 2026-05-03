@@ -27,7 +27,7 @@ export default function Header() {
       {/* Top meta bar */}
       <div className="hidden md:flex items-center justify-between px-6 lg:px-10 pt-3 pb-2 text-[10px] tracking-[0.22em] text-ink/75 font-mono">
         <span>VOL. I · ISSUE 01</span>
-        <span>{formatDate()}</span>
+        <span>2026</span>
         <span>BENGALURU · MUMBAI · GLOBAL</span>
       </div>
 
@@ -43,7 +43,7 @@ export default function Header() {
               Mihika Sharma
             </span>
             <span className="block text-[10px] md:text-[11px] font-mono tracking-[0.3em] text-ink/60 mt-1">
-              THE DISPATCH · PORTFOLIO
+              PORTFOLIO
             </span>
           </a>
 
