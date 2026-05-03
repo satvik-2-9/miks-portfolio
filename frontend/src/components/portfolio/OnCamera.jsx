@@ -66,11 +66,11 @@ export default function OnCamera() {
 
         {/* Two featured reels (1.3M Namaste + 500K Chandni Chowk) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-14 items-start">
-          {/* Namaste \u2014 Instagram iframe embed (slightly larger) */}
+          {/* Namaste \u2014 Instagram iframe embed (slightly larger). Cropped to hide IG header + likes/comments footer. */}
           <div className="md:col-span-5">
             <div className="relative max-w-[360px] mx-auto md:mx-0 border border-ink/15 bg-paper">
               {/* Top frame badge */}
-              <div className="absolute -top-3 left-3 z-10 flex items-center gap-2">
+              <div className="absolute -top-3 left-3 z-20 flex items-center gap-2">
                 <span className="bg-oxblood text-paper font-mono text-[10px] tracking-[0.3em] px-2 py-1 inline-flex items-center gap-1.5">
                   <Instagram size={12} /> NO. 01
                 </span>
@@ -78,27 +78,52 @@ export default function OnCamera() {
                   1.3M+ VIEWS
                 </span>
               </div>
-              <iframe
-                src="https://www.instagram.com/reel/C7WaZ8uPeyN/embed/captioned/"
-                title="Namaste Democracy reel \u2014 1.3M+ views"
-                className="w-full block"
-                style={{ height: 620, border: 0 }}
-                allow="encrypted-media; picture-in-picture; clipboard-write"
-                scrolling="no"
-                loading="lazy"
-              />
+
+              {/* Cropped iframe: hide IG header at top + action bar at bottom */}
+              <div className="relative overflow-hidden" style={{ height: 545 }}>
+                <iframe
+                  src="https://www.instagram.com/reel/C7WaZ8uPeyN/embed/"
+                  title="Namaste Democracy reel \u2014 1.3M+ views"
+                  style={{
+                    position: "absolute",
+                    top: -55,
+                    left: 0,
+                    width: "100%",
+                    height: 720,
+                    border: 0,
+                  }}
+                  allow="encrypted-media; picture-in-picture; clipboard-write"
+                  scrolling="no"
+                  loading="lazy"
+                />
+                {/* Bottom paper-color cover so the IG action bar (with stale like count) is fully hidden */}
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-paper" />
+              </div>
+
+              {/* Our editorial footer band over IG content */}
+              <div className="border-t border-ink/15 px-4 py-3 bg-paper flex items-center justify-between">
+                <div>
+                  <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-oxblood">@namastedemocracy</div>
+                  <div className="font-display text-[18px] leading-tight text-ink">1.3M+ views &middot; <span className="italic text-ink/70 text-[14px]">anchored</span></div>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(
+                      "https://www.instagram.com/reel/C7WaZ8uPeyN/",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                  className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink border border-ink/30 px-2.5 py-1.5 hover:bg-ink hover:text-paper transition-colors inline-flex items-center gap-1"
+                >
+                  Open <ArrowUpRight size={11} />
+                </button>
+              </div>
             </div>
 
-            <div className="mt-3 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-ink/65 max-w-[360px] mx-auto md:mx-0">
-              <span>Featured Reel No. 01 &middot; Namaste Democracy</span>
-              <a
-                href="https://www.instagram.com/reel/C7WaZ8uPeyN/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-oxblood hover:underline"
-              >
-                Open <ArrowUpRight size={11} />
-              </a>
+            <div className="mt-3 font-mono text-[10px] tracking-[0.22em] uppercase text-ink/55 max-w-[360px] mx-auto md:mx-0">
+              Featured Reel No. 01
             </div>
           </div>
 
