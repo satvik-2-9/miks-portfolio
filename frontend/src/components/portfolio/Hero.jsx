@@ -1,8 +1,18 @@
 import React from "react";
-import { ArrowDownRight, MapPin, Signal } from "lucide-react";
+import { ArrowDownRight, MapPin, Signal, Download } from "lucide-react";
 import { profile } from "../../mock/mock";
 
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
 export default function Hero() {
+  const downloadCV = () => {
+    fetch(`${API}/track`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event: "download_cv", section: "hero" }),
+    }).catch(() => {});
+    window.location.href = `${API}/resume`;
+  };
   return (
     <section id="top" className="relative border-b border-ink/15 bg-paper">
       {/* subtle grain */}
@@ -52,9 +62,15 @@ export default function Hero() {
                 Read the dispatches
                 <ArrowDownRight size={16} className="group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform duration-300" />
               </a>
+              <button
+                onClick={downloadCV}
+                className="inline-flex items-center gap-2 border border-ink text-ink px-6 py-3 text-[12px] tracking-[0.25em] uppercase font-mono hover:bg-ink hover:text-paper transition-colors duration-300"
+              >
+                <Download size={14} /> Download CV
+              </button>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 border border-ink text-ink px-6 py-3 text-[12px] tracking-[0.25em] uppercase font-mono hover:bg-ink hover:text-paper transition-colors duration-300"
+                className="inline-flex items-center gap-2 text-ink/70 hover:text-oxblood px-3 py-3 text-[12px] tracking-[0.25em] uppercase font-mono underline-offset-4 hover:underline transition-colors duration-300"
               >
                 Get in touch
               </a>

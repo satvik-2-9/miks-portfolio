@@ -1,35 +1,53 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Send, Check } from "lucide-react";
+import axios from "axios";
+import { Mail, Phone, MapPin, Linkedin, Send, Check, Download } from "lucide-react";
 import { profile, socials } from "../../mock/mock";
 import { useToast } from "../../hooks/use-toast";
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Contact() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast({ title: "A few fields are missing", description: "Name, email and a message are required." });
       return;
     }
-    // Open default mail client with prefilled content (works without backend)
-    const body = encodeURIComponent(`Hi Mihika,\n\n${form.message}\n\n— ${form.name}\n${form.email}`);
-    const subject = encodeURIComponent(form.subject || "Portfolio enquiry");
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-
-    // Save locally as a mock "thank you"
+    setSubmitting(true);
     try {
-      const prev = JSON.parse(localStorage.getItem("mihika_messages") || "[]");
-      prev.push({ ...form, at: new Date().toISOString() });
-      localStorage.setItem("mihika_messages", JSON.stringify(prev));
-    } catch {}
-    setSent(true);
-    toast({ title: "Message ready", description: "Your mail client has been opened. A copy was saved locally." });
-    setTimeout(() => setSent(false), 4000);
+      const res = await axios.post(`${API}/contact`, form, { timeout: 12000 });
+      if (res.data?.ok) {
+        setSent(true);
+        toast({ title: "Message sent", description: "Mihika will get back to you shortly." });
+        setForm({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSent(false), 4500);
+      } else {
+        throw new Error("Server error");
+      }
+    } catch (err) {
+      const body = encodeURIComponent(`Hi Mihika,\n\n${form.message}\n\n— ${form.name}\n${form.email}`);
+      const subject = encodeURIComponent(form.subject || "Portfolio enquiry");
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      toast({ title: "Couldn\u2019t reach the server", description: "Opening your mail client as a fallback." });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const downloadCV = () => {
+    fetch(`${API}/track`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event: "download_cv", section: "contact" }),
+    }).catch(() => {});
+    window.location.href = `${API}/resume`;
   };
 
   return (
@@ -82,6 +100,14 @@ export default function Contact() {
                 <span className="text-paper/85 tracking-normal font-mono text-[13px]">{profile.location}</span>
               </div>
             </div>
+
+            {/* Download CV */}
+            <button
+              onClick={downloadCV}
+              className="mt-10 inline-flex items-center gap-2 bg-oxblood text-paper px-5 py-3 font-mono text-[11px] tracking-[0.25em] uppercase hover:bg-paper hover:text-ink transition-colors duration-300"
+            >
+              <Download size={14} /> Download CV (PDF)
+            </button>
           </div>
 
           <div className="lg:col-span-7">
@@ -139,12 +165,15 @@ export default function Contact() {
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 font-mono text-[12px] tracking-[0.25em] uppercase hover:bg-oxblood-light hover:text-ink transition-colors duration-300"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 font-mono text-[12px] tracking-[0.25em] uppercase hover:bg-oxblood-light hover:text-ink transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {sent ? (
                     <>
                       Sent <Check size={16} />
                     </>
+                  ) : submitting ? (
+                    <>Sending&hellip;</>
                   ) : (
                     <>
                       Send Message <Send size={14} />
