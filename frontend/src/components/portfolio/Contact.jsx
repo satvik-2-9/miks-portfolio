@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin, Linkedin, Send, Check } from "lucide-react";
 import { profile, socials } from "../../mock/mock";
 import { useToast } from "../../hooks/use-toast";
+import { ext } from "../../lib/ext";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -67,7 +68,7 @@ export default function Contact() {
                   {profile.phone}
                 </span>
               </a>
-              <a href={profile.linkedin} target="_top" rel="noreferrer" className="flex items-center gap-4 group">
+              <a href={ext(profile.linkedin)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                 <span className="w-9 h-9 grid place-items-center border border-paper/30 group-hover:border-oxblood-light group-hover:text-oxblood-light transition-colors">
                   <Linkedin size={14} />
                 </span>

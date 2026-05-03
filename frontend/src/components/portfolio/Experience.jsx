@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { experience } from "../../mock/mock";
+import { ext } from "../../lib/ext";
 
 export default function Experience() {
   return (
@@ -49,9 +50,9 @@ export default function Experience() {
                 </p>
                 {job.link && (
                   <a
-                    href={job.link.href}
-                    target="_top"
-                    rel="noreferrer"
+                    href={ext(job.link.href)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.22em] uppercase text-ink border-b border-ink/40 hover:text-oxblood hover:border-oxblood pb-0.5 transition-colors"
                   >
                     {job.link.label}
