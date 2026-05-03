@@ -113,9 +113,14 @@ export const experience = [
   },
 ];
 
+// Each dispatch carries a `posterKey` that maps to a bespoke editorial cover
+// in FeaturedWork.jsx (gradient + topic mark + headline number).
+// Drop a real image at /public/assets/dispatches/{posterKey}.jpg and it
+// will be picked up automatically as the cover.
 export const featuredWork = [
   {
     id: "w1",
+    posterKey: "blackstone",
     category: "M&A \u00B7 Real Estate",
     headline: "Blackstone\u2019s \u00244 billion New World talks stall over control, Bloomberg News reports",
     dek: "Inside the corporate stand\u2011off that froze one of Asia\u2019s most\u2011watched real\u2011estate deals.",
@@ -126,16 +131,18 @@ export const featuredWork = [
   },
   {
     id: "w2",
-    category: "M&A \u00B7 Pharma",
-    headline: "Sun Pharma to buy US drugmaker Organon for \u002411.75 billion in India\u2019s largest pharma deal",
-    dek: "An all\u2011cash mega\u2011deal that reshapes Indian pharma\u2019s outbound footprint. Filed for the global wire as the news broke.",
+    posterKey: "qxo",
+    category: "M&A \u00B7 Industrials",
+    headline: "QXO to buy commercial roofing firm TopBuild for \u002417 billion in cash and stock",
+    dek: "Brad Jacobs\u2019 building\u2011products roll\u2011up gets its biggest scalp yet \u2014 a \u002417B cash\u2011and\u2011stock bet on US commercial roofing.",
     date: "Apr 2026",
     outlet: "Thomson Reuters",
     readTime: "Byline",
-    href: "https://www.reuters.com/business/healthcare-pharmaceuticals/sun-pharma-acquire-organon-1175-bln-all-cash-deal-2026-04-27/",
+    href: "https://www.reuters.com/legal/transactional/qxo-buy-commercial-roofing-firm-topbuild-17-billion-2026-04-19/",
   },
   {
     id: "w3",
+    posterKey: "amazon-google",
     category: "Tech \u00B7 Cloud",
     headline: "Amazon and Google launch multicloud service for faster connectivity",
     dek: "A rare collaboration between hyperscalers \u2014 and what it signals for enterprise infrastructure economics.",
@@ -146,6 +153,18 @@ export const featuredWork = [
   },
   {
     id: "w4",
+    posterKey: "sun-pharma",
+    category: "M&A \u00B7 Pharma",
+    headline: "Sun Pharma to buy US drugmaker Organon for \u002411.75 billion in India\u2019s largest pharma deal",
+    dek: "An all\u2011cash mega\u2011deal that reshapes Indian pharma\u2019s outbound footprint. Filed for the global wire as the news broke.",
+    date: "Apr 2026",
+    outlet: "Thomson Reuters",
+    readTime: "Byline",
+    href: "https://www.reuters.com/business/healthcare-pharmaceuticals/sun-pharma-acquire-organon-1175-bln-all-cash-deal-2026-04-27/",
+  },
+  {
+    id: "w5",
+    posterKey: "uk-anthropic",
     category: "AI \u00B7 Regulation",
     headline: "UK regulators rush to assess risks of latest Anthropic AI model, FT reports",
     dek: "How British financial watchdogs are racing to keep pace with frontier AI \u2014 and what it means for the City.",
@@ -155,7 +174,8 @@ export const featuredWork = [
     href: "https://www.reuters.com/world/uk/uk-financial-regulators-rush-assess-risks-anthropics-latest-ai-model-ft-reports-2026-04-12/",
   },
   {
-    id: "w5",
+    id: "w6",
+    posterKey: "us-oil-iran",
     category: "Geopolitics \u00B7 Energy",
     headline: "US probes suspicious oil trades made before Trump Iran pivots, source says",
     dek: "Tracking the trades that moved before the policy did \u2014 a window into the intersection of energy markets and statecraft.",
@@ -163,16 +183,6 @@ export const featuredWork = [
     outlet: "Thomson Reuters",
     readTime: "Byline",
     href: "https://www.reuters.com/business/energy/us-probes-suspicious-oil-trades-made-before-trump-iran-pivots-source-says-2026-04-15/",
-  },
-  {
-    id: "w6",
-    category: "Humanitarian \u00B7 Asia",
-    headline: "Around 250 missing after Rohingya boat capsizes in Andaman Sea, UN agencies say",
-    dek: "Reporting a humanitarian disaster from the Andaman Sea \u2014 verifying numbers and witness accounts under deadline.",
-    date: "Apr 2026",
-    outlet: "Thomson Reuters",
-    readTime: "Byline",
-    href: "https://www.reuters.com/world/asia-pacific/around-250-missing-after-rohingya-boat-capsizes-andaman-sea-un-agencies-say-2026-04-14/",
   },
 ];
 
@@ -311,6 +321,7 @@ export const multimedia = [
     duration: "Reel",
     category: "Politics",
     href: "https://www.instagram.com/reel/DCrHDz4NW5h/",
+    customPoster: "cl-drama",
   },
   {
     id: "cl2",
@@ -322,6 +333,7 @@ export const multimedia = [
     duration: "Reel",
     category: "Civic Explainer",
     href: "https://www.instagram.com/reel/DKZkZZ6piOd/",
+    customPoster: "cl-explainer",
   },
   {
     id: "cl3",
@@ -333,6 +345,7 @@ export const multimedia = [
     duration: "Reel",
     category: "Civic Explainer",
     href: "https://www.instagram.com/reel/DK9h3yGtRDM/",
+    customPoster: "cl-feed",
   },
   // Long-form YouTube videos at the end
   {

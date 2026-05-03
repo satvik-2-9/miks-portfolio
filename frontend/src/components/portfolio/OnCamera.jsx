@@ -271,6 +271,22 @@ export default function OnCamera() {
                 eyebrow: "ECONOMY \u00B7 AGRI",
                 stat: "$12B",
               },
+              // Civic Lens reels — bespoke covers for the cl1/cl2/cl3 grid
+              "cl-drama": {
+                gradient: "linear-gradient(150deg, #150a18 0%, #2c0e2c 40%, #5a0e3c 75%, #8a1442 100%)",
+                eyebrow: "CIVIC LENS \u00B7 POLITICS",
+                stat: "READ THE DRAMA",
+              },
+              "cl-explainer": {
+                gradient: "linear-gradient(155deg, #0a1414 0%, #0e2c2c 40%, #14524a 75%, #1c8470 100%)",
+                eyebrow: "CIVIC LENS \u00B7 EXPLAINER",
+                stat: "WEEKLY DROP",
+              },
+              "cl-feed": {
+                gradient: "linear-gradient(150deg, #0a0e1a 0%, #14203a 40%, #1a3a6a 75%, #2860a0 100%)",
+                eyebrow: "CIVIC LENS \u00B7 INDIA FEED",
+                stat: "ON THE GROUND",
+              },
             };
             const ytPoster = m.customPoster ? ytPosters[m.customPoster] : null;
 
