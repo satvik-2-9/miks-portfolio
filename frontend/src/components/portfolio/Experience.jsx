@@ -50,7 +50,7 @@ export default function Experience() {
                 {job.link && (
                   <a
                     href={job.link.href}
-                    target="_blank"
+                    target="_top"
                     rel="noreferrer"
                     className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.22em] uppercase text-ink border-b border-ink/40 hover:text-oxblood hover:border-oxblood pb-0.5 transition-colors"
                   >
@@ -76,7 +76,7 @@ export default function Experience() {
                 {job.highlight && (
                   <a
                     href={job.highlight.href}
-                    target="_blank"
+                    target="_top"
                     rel="noreferrer"
                     className="mt-6 inline-flex items-stretch border border-ink bg-paper hover:bg-ink hover:text-paper transition-colors duration-300 group/hl"
                   >

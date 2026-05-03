@@ -106,19 +106,14 @@ export default function OnCamera() {
                   <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-oxblood">@namastedemocracy</div>
                   <div className="font-display text-[18px] leading-tight text-ink">1.3M+ views &middot; <span className="italic text-ink/70 text-[14px]">anchored</span></div>
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open(
-                      "https://www.instagram.com/reel/C7WaZ8uPeyN/",
-                      "_blank",
-                      "noopener,noreferrer"
-                    );
-                  }}
+                <a
+                  href="https://www.instagram.com/reel/C7WaZ8uPeyN/"
+                  target="_top"
+                  rel="noopener noreferrer"
                   className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink border border-ink/30 px-2.5 py-1.5 hover:bg-ink hover:text-paper transition-colors inline-flex items-center gap-1"
                 >
                   Open <ArrowUpRight size={11} />
-                </button>
+                </a>
               </div>
             </div>
 

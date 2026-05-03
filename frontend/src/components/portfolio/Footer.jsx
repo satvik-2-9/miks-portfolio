@@ -31,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-2 font-serifText text-[15px] text-ink/80">
               {socials.map((s) => (
                 <li key={s.label}>
-                  <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="hover:text-oxblood transition-colors">
+                  <a href={s.href} target={s.href.startsWith("http") ? "_top" : undefined} rel="noopener noreferrer" className="hover:text-oxblood transition-colors">
                     <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-ink/50 mr-2">{s.label}</span>
                     {s.handle}
                   </a>

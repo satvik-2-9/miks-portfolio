@@ -67,7 +67,7 @@ export default function Contact() {
                   {profile.phone}
                 </span>
               </a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-4 group">
+              <a href={profile.linkedin} target="_top" rel="noreferrer" className="flex items-center gap-4 group">
                 <span className="w-9 h-9 grid place-items-center border border-paper/30 group-hover:border-oxblood-light group-hover:text-oxblood-light transition-colors">
                   <Linkedin size={14} />
                 </span>
