@@ -65,75 +65,42 @@ export default function OnCamera() {
         </div>
 
         {/* Two featured reels (1.3M Namaste + 500K Chandni Chowk) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-14">
-          {/* Namaste \u2014 click-through card (slightly larger) */}
-          <a
-            href="https://www.instagram.com/reel/C7WaZ8uPeyN/"
-            target="_blank"
-            rel="noreferrer"
-            className="md:col-span-5 group/card"
-          >
-            <div className="relative aspect-[9/16] overflow-hidden cursor-pointer max-w-[360px] mx-auto md:mx-0">
-              {/* Editorial poster background */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(150deg, #1a0d0e 0%, #4d1518 38%, #7c1e22 70%, #9a2a2f 100%)",
-                }}
-              />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.16),transparent_55%)]" />
-              {/* Subtle grain */}
-              <div
-                className="absolute inset-0 opacity-20 mix-blend-overlay"
-                style={{
-                  backgroundImage:
-                    "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
-                }}
-              />
-
-              {/* Top badges */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper">
-                <span className="bg-ink/55 backdrop-blur px-2 py-1 inline-flex items-center gap-1.5">
-                  <Instagram size={12} /> REEL
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-14 items-start">
+          {/* Namaste \u2014 Instagram iframe embed (slightly larger) */}
+          <div className="md:col-span-5">
+            <div className="relative max-w-[360px] mx-auto md:mx-0 border border-ink/15 bg-paper">
+              {/* Top frame badge */}
+              <div className="absolute -top-3 left-3 z-10 flex items-center gap-2">
+                <span className="bg-oxblood text-paper font-mono text-[10px] tracking-[0.3em] px-2 py-1 inline-flex items-center gap-1.5">
+                  <Instagram size={12} /> NO. 01
                 </span>
-                <span className="bg-paper text-ink px-2 py-1">NO. 01</span>
+                <span className="bg-ink text-paper font-mono text-[10px] tracking-[0.3em] px-2 py-1">
+                  1.3M+ VIEWS
+                </span>
               </div>
-
-              {/* Center metric */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-paper text-center px-6">
-                <div className="font-mono text-[10px] tracking-[0.35em] uppercase opacity-80 mb-3">
-                  Top Performing
-                </div>
-                <div className="font-display text-[68px] md:text-[78px] leading-none tracking-[-0.02em]">
-                  1.3M+
-                </div>
-                <div className="mt-1 font-mono text-[11px] tracking-[0.3em] uppercase">views</div>
-                <div className="mt-6 w-12 h-px bg-paper/40" />
-                <p className="mt-5 font-serifText italic text-[15px] leading-snug max-w-[230px] opacity-90">
-                  &ldquo;A short, sharp civic explainer that broke through the feed.&rdquo;
-                </p>
-              </div>
-
-              {/* Bottom caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-paper">
-                <div className="font-mono text-[10px] tracking-[0.3em] uppercase opacity-85 mb-2">
-                  Namaste Democracy &middot; Anchored
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="font-serifText italic text-[14px] opacity-95">Watch on Instagram</span>
-                  <span className="w-9 h-9 grid place-items-center border border-paper/50 rounded-full group-hover/card:bg-paper group-hover/card:text-ink transition-colors">
-                    <ArrowUpRight size={15} />
-                  </span>
-                </div>
-              </div>
+              <iframe
+                src="https://www.instagram.com/reel/C7WaZ8uPeyN/embed/captioned/"
+                title="Namaste Democracy reel \u2014 1.3M+ views"
+                className="w-full block"
+                style={{ height: 620, border: 0 }}
+                allow="encrypted-media; picture-in-picture; clipboard-write"
+                scrolling="no"
+                loading="lazy"
+              />
             </div>
 
             <div className="mt-3 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-ink/65 max-w-[360px] mx-auto md:mx-0">
-              <span>Featured Reel No. 01</span>
-              <span className="text-oxblood">1.3M+ views</span>
+              <span>Featured Reel No. 01 &middot; Namaste Democracy</span>
+              <a
+                href="https://www.instagram.com/reel/C7WaZ8uPeyN/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-oxblood hover:underline"
+              >
+                Open <ArrowUpRight size={11} />
+              </a>
             </div>
-          </a>
+          </div>
 
           {/* Chandni Chowk \u2014 native video player (slightly smaller) */}
           <div className="md:col-span-4">
