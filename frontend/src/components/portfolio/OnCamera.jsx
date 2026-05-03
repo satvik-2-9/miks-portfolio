@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef } from "react";
-import { Play, Pause, Instagram, Youtube, FileText, Clock, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, Instagram, Youtube, FileText, Clock, Volume2, VolumeX, ArrowUpRight } from "lucide-react";
 import { multimedia, featuredReel } from "../../mock/mock";
 
 const FILTERS = [
@@ -33,7 +33,6 @@ export default function OnCamera() {
       setPlaying(false);
     }
   };
-
   const toggleMute = (e) => {
     e.stopPropagation();
     const v = videoRef.current;
@@ -65,11 +64,81 @@ export default function OnCamera() {
           </p>
         </div>
 
-        {/* Featured native video reel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16 border-y border-ink/15 py-10">
-          <div className="lg:col-span-5">
+        {/* Two featured reels (1.3M Namaste + 500K Chandni Chowk) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-14">
+          {/* Namaste \u2014 click-through card (slightly larger) */}
+          <a
+            href="https://www.instagram.com/reel/C7WaZ8uPeyN/"
+            target="_blank"
+            rel="noreferrer"
+            className="md:col-span-5 group/card"
+          >
+            <div className="relative aspect-[9/16] overflow-hidden cursor-pointer max-w-[360px] mx-auto md:mx-0">
+              {/* Editorial poster background */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(150deg, #1a0d0e 0%, #4d1518 38%, #7c1e22 70%, #9a2a2f 100%)",
+                }}
+              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.16),transparent_55%)]" />
+              {/* Subtle grain */}
+              <div
+                className="absolute inset-0 opacity-20 mix-blend-overlay"
+                style={{
+                  backgroundImage:
+                    "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+                }}
+              />
+
+              {/* Top badges */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper">
+                <span className="bg-ink/55 backdrop-blur px-2 py-1 inline-flex items-center gap-1.5">
+                  <Instagram size={12} /> REEL
+                </span>
+                <span className="bg-paper text-ink px-2 py-1">NO. 01</span>
+              </div>
+
+              {/* Center metric */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-paper text-center px-6">
+                <div className="font-mono text-[10px] tracking-[0.35em] uppercase opacity-80 mb-3">
+                  Top Performing
+                </div>
+                <div className="font-display text-[68px] md:text-[78px] leading-none tracking-[-0.02em]">
+                  1.3M+
+                </div>
+                <div className="mt-1 font-mono text-[11px] tracking-[0.3em] uppercase">views</div>
+                <div className="mt-6 w-12 h-px bg-paper/40" />
+                <p className="mt-5 font-serifText italic text-[15px] leading-snug max-w-[230px] opacity-90">
+                  &ldquo;A short, sharp civic explainer that broke through the feed.&rdquo;
+                </p>
+              </div>
+
+              {/* Bottom caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-paper">
+                <div className="font-mono text-[10px] tracking-[0.3em] uppercase opacity-85 mb-2">
+                  Namaste Democracy &middot; Anchored
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-serifText italic text-[14px] opacity-95">Watch on Instagram</span>
+                  <span className="w-9 h-9 grid place-items-center border border-paper/50 rounded-full group-hover/card:bg-paper group-hover/card:text-ink transition-colors">
+                    <ArrowUpRight size={15} />
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-ink/65 max-w-[360px] mx-auto md:mx-0">
+              <span>Featured Reel No. 01</span>
+              <span className="text-oxblood">1.3M+ views</span>
+            </div>
+          </a>
+
+          {/* Chandni Chowk \u2014 native video player (slightly smaller) */}
+          <div className="md:col-span-4">
             <div
-              className="relative aspect-[9/16] bg-ink overflow-hidden cursor-pointer group/v select-none"
+              className="relative aspect-[9/16] bg-ink overflow-hidden cursor-pointer group/v select-none max-w-[320px] mx-auto md:mx-0"
               onClick={togglePlay}
             >
               <video
@@ -82,70 +151,60 @@ export default function OnCamera() {
                 preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* dark overlay when paused */}
-              {!playing && (
-                <div className="absolute inset-0 bg-ink/35 transition-opacity duration-300" />
-              )}
-              {/* top badges */}
+              {!playing && <div className="absolute inset-0 bg-ink/30 transition-opacity duration-300" />}
+
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper">
                 <span className="bg-ink/60 backdrop-blur px-2 py-1 inline-flex items-center gap-1.5">
                   <Instagram size={12} /> REEL
                 </span>
-                <span className="bg-oxblood text-paper px-2 py-1">FEATURED</span>
+                <span className="bg-paper text-ink px-2 py-1">NO. 02</span>
               </div>
 
-              {/* mute toggle */}
               <button
                 onClick={toggleMute}
-                className="absolute bottom-4 right-4 w-10 h-10 grid place-items-center bg-ink/60 backdrop-blur text-paper hover:bg-oxblood transition-colors"
+                className="absolute bottom-4 right-4 w-9 h-9 grid place-items-center bg-ink/60 backdrop-blur text-paper hover:bg-oxblood transition-colors"
                 aria-label={muted ? "unmute" : "mute"}
               >
-                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
               </button>
 
-              {/* center play/pause */}
               <div className="absolute inset-0 grid place-items-center pointer-events-none">
                 <span
-                  className={`w-16 h-16 md:w-20 md:h-20 grid place-items-center rounded-full border border-paper/50 backdrop-blur-sm bg-paper/10 transition-all duration-300 ${
+                  className={`w-14 h-14 grid place-items-center rounded-full border border-paper/50 backdrop-blur-sm bg-paper/10 transition-all duration-300 ${
                     playing ? "opacity-0 group-hover/v:opacity-100 scale-90" : "opacity-100 scale-100"
                   }`}
                 >
-                  {playing ? <Pause size={26} className="text-paper" /> : <Play size={28} className="text-paper translate-x-0.5" />}
+                  {playing ? <Pause size={22} className="text-paper" /> : <Play size={24} className="text-paper translate-x-0.5" />}
                 </span>
               </div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-4 pb-14 text-paper bg-gradient-to-t from-ink/85 to-transparent">
+                <div className="font-mono text-[10px] tracking-[0.3em] uppercase opacity-85 mb-1">
+                  Personal Archive &middot; Chandni Chowk
+                </div>
+                <div className="font-display text-[20px] leading-tight">
+                  500K+ views &middot; <span className="italic">plays inline</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-ink/65 max-w-[320px] mx-auto md:mx-0">
+              <span>Featured Reel No. 02</span>
+              <span className="text-oxblood">500K+ views</span>
             </div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood">
-              Featured Reel &middot; Plays Inline
+          {/* Right column: editorial copy / stat callouts */}
+          <div className="md:col-span-3 flex flex-col justify-center">
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood mb-4">
+              Featured &middot; 02 of the catalog
             </div>
-            <h3 className="mt-4 font-display text-[32px] md:text-[44px] leading-[1.04] tracking-[-0.01em] text-ink">
-              {featuredReel.title}
-            </h3>
-            <p className="mt-5 font-serifText text-[16.5px] md:text-[18px] leading-[1.7] text-ink/80 max-w-[560px]">
-              {featuredReel.blurb}
+            <p className="font-serifText text-[15.5px] leading-[1.7] text-ink/80">
+              Two reels that found their audience on their own &mdash; one anchored at <span className="italic">Namaste Democracy</span>, one shot solo on the lanes of <span className="italic">Chandni Chowk</span>. Together, just under <span className="font-display text-ink">2M views</span>.
             </p>
-
-            {/* Metric callout */}
-            <div className="mt-7 inline-flex items-stretch border border-ink w-fit">
-              <span className="flex items-baseline gap-1 px-5 py-3 bg-oxblood text-paper">
-                <span className="font-display text-[30px] leading-none">{featuredReel.metric}</span>
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-90">{featuredReel.metricLabel}</span>
-              </span>
-              <span className="flex flex-col justify-center px-5 py-3 bg-paper">
-                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-ink/55">
-                  Reach
-                </span>
-                <span className="font-serifText italic text-[14px] leading-tight mt-0.5">
-                  Beyond the algorithm
-                </span>
-              </span>
+            <div className="mt-6 border-t border-ink/15 pt-4 font-mono text-[10px] tracking-[0.25em] uppercase text-ink/55">
+              Scroll for the full catalog &darr;
             </div>
-
-            <p className="mt-7 font-mono text-[10px] tracking-[0.25em] uppercase text-ink/50">
-              {featuredReel.category}
-            </p>
           </div>
         </div>
 
@@ -167,86 +226,63 @@ export default function OnCamera() {
           <span className="ml-auto text-ink/50">{items.length} pieces</span>
         </div>
 
-        {/* Masonry-like editorial grid. 12-col with variable spans based on type */}
-        <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-12 gap-5">
+        {/* Uniform editorial grid for the rest. All cards share the same 4:5 aspect for clean alignment. */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {items.map((m) => {
             const isReel = m.type === "reel";
             const isLong = m.type === "long";
             const isArticle = m.type === "article";
 
-            // Span classes
-            const spanCls = isReel
-              ? "col-span-1 md:col-span-2 lg:col-span-3"
-              : isLong
-              ? "col-span-2 md:col-span-3 lg:col-span-6"
-              : "col-span-2 md:col-span-3 lg:col-span-6";
-
-            const ratioCls = isReel ? "aspect-[9/16]" : isLong ? "aspect-[16/10]" : "aspect-[16/9]";
-
             return (
-              <article key={m.id} className={`group ${spanCls}`}>
-                <div
-                  className={`relative overflow-hidden ${ratioCls} bg-ink cursor-pointer`}
-                >
-                  {/* Generative backdrop unique per id */}
+              <article key={m.id} className="group">
+                <div className="relative overflow-hidden aspect-[4/5] bg-ink cursor-pointer">
                   <div
                     className="absolute inset-0"
                     style={{
-                      background:
-                        isReel
-                          ? `linear-gradient(145deg, #1a1a1a 0%, #3a1818 45%, #7c1e22 100%)`
-                          : isLong
-                          ? `linear-gradient(120deg, #141414 0%, #2a2220 60%, #4a2a20 100%)`
-                          : `linear-gradient(160deg, #1c1c1c 0%, #222 70%)`,
+                      background: isReel
+                        ? "linear-gradient(145deg, #1a1a1a 0%, #3a1818 45%, #7c1e22 100%)"
+                        : isLong
+                        ? "linear-gradient(120deg, #141414 0%, #2a2220 60%, #4a2a20 100%)"
+                        : "linear-gradient(160deg, #1c1c1c 0%, #222 70%)",
                     }}
                   />
-                  {/* Subtle vignette */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_55%)]" />
 
-                  {/* Top badges */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper/85">
-                    <span className="inline-flex items-center gap-1.5 bg-ink/60 backdrop-blur px-2 py-1">
-                      <PlatformIcon type={m.type} platform={m.platform} size={12} />
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between font-mono text-[9px] tracking-[0.3em] text-paper/85">
+                    <span className="inline-flex items-center gap-1 bg-ink/60 backdrop-blur px-2 py-1">
+                      <PlatformIcon type={m.type} platform={m.platform} size={10} />
                       {m.platform.toUpperCase()}
                     </span>
                     <span className="inline-flex items-center gap-1 bg-ink/60 backdrop-blur px-2 py-1">
-                      {isArticle ? <FileText size={11} /> : <Clock size={11} />}
+                      {isArticle ? <FileText size={10} /> : <Clock size={10} />}
                       {m.duration}
                     </span>
                   </div>
 
-                  {/* Center play cue */}
                   {!isArticle && (
                     <div className="absolute inset-0 grid place-items-center">
-                      <span className="w-14 h-14 md:w-16 md:h-16 grid place-items-center rounded-full border border-paper/40 backdrop-blur-sm bg-paper/5 group-hover:bg-oxblood group-hover:border-oxblood transition-all duration-300">
-                        <Play size={22} className="text-paper translate-x-0.5" />
+                      <span className="w-11 h-11 md:w-12 md:h-12 grid place-items-center rounded-full border border-paper/40 backdrop-blur-sm bg-paper/5 group-hover:bg-oxblood group-hover:border-oxblood transition-all duration-300">
+                        <Play size={16} className="text-paper translate-x-0.5" />
                       </span>
                     </div>
                   )}
 
-                  {/* Bottom caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-paper">
-                    <div className="font-mono text-[10px] tracking-[0.3em] text-oxblood-light uppercase mb-2">
-                      {m.outlet} &middot; {m.category}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-paper bg-gradient-to-t from-ink/85 via-ink/40 to-transparent">
+                    <div className="font-mono text-[9px] tracking-[0.3em] text-oxblood-light uppercase mb-1.5">
+                      {m.outlet}
                     </div>
-                    <h3 className={`font-display leading-[1.1] ${isReel ? "text-[18px] md:text-[20px]" : "text-[22px] md:text-[26px]"}`}>
+                    <h3 className="font-display text-[16px] md:text-[18px] leading-[1.15] line-clamp-3">
                       {m.title}
                     </h3>
-                    {!isReel && (
-                      <p className="mt-2 font-serifText text-[13.5px] md:text-[14.5px] leading-[1.55] text-paper/75 line-clamp-2">
-                        {m.blurb}
-                      </p>
-                    )}
                   </div>
                 </div>
 
-                {/* Below-card meta */}
-                <div className="mt-3 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-ink/60">
-                  <span className="inline-flex items-center gap-1.5">
-                    <PlatformIcon type={m.type} platform={m.platform} size={12} />
+                <div className="mt-2.5 flex items-center justify-between font-mono text-[9.5px] tracking-[0.22em] uppercase text-ink/60">
+                  <span className="inline-flex items-center gap-1">
+                    <PlatformIcon type={m.type} platform={m.platform} size={10} />
                     {m.type === "reel" ? "Reel" : m.type === "long" ? "Video" : "Essay"}
                   </span>
-                  <span>{m.outlet}</span>
+                  <span className="truncate ml-2">{m.category}</span>
                 </div>
               </article>
             );
