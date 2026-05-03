@@ -4,6 +4,7 @@ import Hero from "../components/portfolio/Hero";
 import About from "../components/portfolio/About";
 import Experience from "../components/portfolio/Experience";
 import FeaturedWork from "../components/portfolio/FeaturedWork";
+import OnCamera from "../components/portfolio/OnCamera";
 import ExpertiseEdu from "../components/portfolio/ExpertiseEdu";
 import Contact from "../components/portfolio/Contact";
 import Footer from "../components/portfolio/Footer";
@@ -16,9 +17,10 @@ export default function Portfolio() {
       <main>
         <Hero />
         <About />
-        <Experience />
         <FeaturedWork />
+        <OnCamera />
         <ExpertiseEdu />
+        <Experience />
         <Contact />
       </main>
       <Footer />

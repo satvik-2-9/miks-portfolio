@@ -75,7 +75,7 @@ export default function Hero() {
                 <img
                   src={profile.portrait}
                   alt="Portrait of Mihika Sharma"
-                  className="w-full h-[460px] md:h-[560px] lg:h-[620px] object-cover object-top grayscale-[0.35] contrast-[1.05]"
+                  className="w-full h-[460px] md:h-[560px] lg:h-[620px] object-cover object-top"
                 />
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper">
                   <span className="bg-ink/80 px-2 py-1">PORTRAIT</span>

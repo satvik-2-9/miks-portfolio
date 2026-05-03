@@ -36,7 +36,7 @@ export default function Contact() {
     <section id="contact" className="border-b border-ink/15 bg-ink text-paper">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-10 py-16 md:py-24">
         <div className="flex items-center gap-4 mb-10">
-          <span className="font-mono text-[11px] tracking-[0.3em] text-oxblood-light">§ 06</span>
+          <span className="font-mono text-[11px] tracking-[0.3em] text-oxblood-light">§ 07</span>
           <span className="h-px flex-1 bg-paper/20" />
           <span className="font-mono text-[11px] tracking-[0.3em] text-paper/60 uppercase">Desk / Correspondence</span>
         </div>
