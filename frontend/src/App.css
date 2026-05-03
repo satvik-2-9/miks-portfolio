@@ -1,0 +1,3 @@
+/* Portfolio app styles */
+html, body, #root, .App { min-height: 100%; }
+body { background: #f5f0e6; color: #141414; }
