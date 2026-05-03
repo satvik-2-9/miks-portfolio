@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
-import { Play, Instagram, Youtube, FileText, Clock } from "lucide-react";
-import { multimedia } from "../../mock/mock";
+import React, { useState, useMemo, useRef } from "react";
+import { Play, Pause, Instagram, Youtube, FileText, Clock, Volume2, VolumeX } from "lucide-react";
+import { multimedia, featuredReel } from "../../mock/mock";
 
 const FILTERS = [
   { key: "all", label: "All" },
@@ -18,6 +18,29 @@ const PlatformIcon = ({ type, platform, size = 14 }) => {
 
 export default function OnCamera() {
   const [filter, setFilter] = useState("all");
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  };
 
   const items = useMemo(
     () => (filter === "all" ? multimedia : multimedia.filter((m) => m.type === filter)),
@@ -40,6 +63,90 @@ export default function OnCamera() {
           <p className="font-serifText text-[15px] text-ink/65 max-w-[360px]">
             Work from Namaste Democracy, Civic Lens and The Raisina Hills &mdash; anchoring, reporting, and scripting civic stories across formats.
           </p>
+        </div>
+
+        {/* Featured native video reel */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16 border-y border-ink/15 py-10">
+          <div className="lg:col-span-5">
+            <div
+              className="relative aspect-[9/16] bg-ink overflow-hidden cursor-pointer group/v select-none"
+              onClick={togglePlay}
+            >
+              <video
+                ref={videoRef}
+                src={featuredReel.src}
+                poster={featuredReel.poster}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* dark overlay when paused */}
+              {!playing && (
+                <div className="absolute inset-0 bg-ink/35 transition-opacity duration-300" />
+              )}
+              {/* top badges */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] tracking-[0.3em] text-paper">
+                <span className="bg-ink/60 backdrop-blur px-2 py-1 inline-flex items-center gap-1.5">
+                  <Instagram size={12} /> REEL
+                </span>
+                <span className="bg-oxblood text-paper px-2 py-1">FEATURED</span>
+              </div>
+
+              {/* mute toggle */}
+              <button
+                onClick={toggleMute}
+                className="absolute bottom-4 right-4 w-10 h-10 grid place-items-center bg-ink/60 backdrop-blur text-paper hover:bg-oxblood transition-colors"
+                aria-label={muted ? "unmute" : "mute"}
+              >
+                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+
+              {/* center play/pause */}
+              <div className="absolute inset-0 grid place-items-center pointer-events-none">
+                <span
+                  className={`w-16 h-16 md:w-20 md:h-20 grid place-items-center rounded-full border border-paper/50 backdrop-blur-sm bg-paper/10 transition-all duration-300 ${
+                    playing ? "opacity-0 group-hover/v:opacity-100 scale-90" : "opacity-100 scale-100"
+                  }`}
+                >
+                  {playing ? <Pause size={26} className="text-paper" /> : <Play size={28} className="text-paper translate-x-0.5" />}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood">
+              Featured Reel &middot; Plays Inline
+            </div>
+            <h3 className="mt-4 font-display text-[32px] md:text-[44px] leading-[1.04] tracking-[-0.01em] text-ink">
+              {featuredReel.title}
+            </h3>
+            <p className="mt-5 font-serifText text-[16.5px] md:text-[18px] leading-[1.7] text-ink/80 max-w-[560px]">
+              {featuredReel.blurb}
+            </p>
+
+            {/* Metric callout */}
+            <div className="mt-7 inline-flex items-stretch border border-ink w-fit">
+              <span className="flex items-baseline gap-1 px-5 py-3 bg-oxblood text-paper">
+                <span className="font-display text-[30px] leading-none">{featuredReel.metric}</span>
+                <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-90">{featuredReel.metricLabel}</span>
+              </span>
+              <span className="flex flex-col justify-center px-5 py-3 bg-paper">
+                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-ink/55">
+                  Reach
+                </span>
+                <span className="font-serifText italic text-[14px] leading-tight mt-0.5">
+                  Beyond the algorithm
+                </span>
+              </span>
+            </div>
+
+            <p className="mt-7 font-mono text-[10px] tracking-[0.25em] uppercase text-ink/50">
+              {featuredReel.category}
+            </p>
+          </div>
         </div>
 
         {/* Filter pills */}

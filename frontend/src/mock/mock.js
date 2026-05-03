@@ -20,7 +20,7 @@ export const profile = {
   secondaryParagraph:
     "I've handled communications for \u0024110B+ mega\u2011deals, briefed Tier\u20111 firms like NVIDIA and Google, and built digital brand identities for Shark Tank India startups. My work lives where rigorous reporting, crisis communications and design\u2011minded storytelling meet.",
   stats: [
-    { value: "1.3M+", label: "Top reel views \u00B7 Namaste Democracy" },
+    { value: "2M+", label: "Combined reel views" },
     { value: "80+", label: "Filed stories at Reuters" },
     { value: "\u0024110B", label: "M&A coverage managed" },
     { value: "100%", label: "First\u2011to\u2011file accuracy" },
@@ -237,6 +237,17 @@ export const socials = [
   { label: "Email", handle: "mihikaasharmaa2003@gmail.com", href: "mailto:mihikaasharmaa2003@gmail.com" },
   { label: "Reuters", handle: "Breaking News Desk", href: "#" },
 ];
+
+// Featured video reel \u2014 played natively (no link, since source is private)
+export const featuredReel = {
+  src: "/assets/personal-reel.mp4",
+  poster: "/assets/personal-reel-poster.jpg",
+  category: "Personal Reel \u00B7 Independent",
+  title: "A reel that crossed half\u2011a\u2011million views",
+  blurb: "From the personal archive \u2014 a short\u2011form piece that hit 500K+ views, written, shot and cut end\u2011to\u2011end.",
+  metric: "500K+",
+  metricLabel: "views",
+};
 
 // On Camera \u2014 reels (vertical 9:16) + long-form (horizontal 16:9)
 // Categories: Namaste Democracy, Civic Lens, The Raisina Hills
