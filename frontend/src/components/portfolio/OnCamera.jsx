@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useRef } from "react";
 import { Play, Pause, Instagram, Youtube, FileText, Clock, Volume2, VolumeX, ArrowUpRight } from "lucide-react";
 import { multimedia, featuredReel } from "../../mock/mock";
-import { ext } from "../../lib/ext";
 
 const FILTERS = [
   { key: "all", label: "All" },
@@ -108,8 +107,7 @@ export default function OnCamera() {
                   <div className="font-display text-[18px] leading-tight text-ink">1.3M+ views &middot; <span className="italic text-ink/70 text-[14px]">anchored</span></div>
                 </div>
                 <a
-                  href={ext("https://www.instagram.com/reel/C7WaZ8uPeyN/")}
-                  target="_blank"
+                  href={"https://www.instagram.com/reel/C7WaZ8uPeyN/"} target="_top"
                   rel="noopener noreferrer"
                   className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink border border-ink/30 px-2.5 py-1.5 hover:bg-ink hover:text-paper transition-colors inline-flex items-center gap-1"
                 >
