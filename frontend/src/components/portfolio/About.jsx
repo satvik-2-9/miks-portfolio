@@ -46,7 +46,7 @@ export default function About() {
               Trained at Xavier Institute of Communications with a political science grounding from Delhi University, she brings editorial craft, financial fluency and a brand-builder&rsquo;s instinct to every desk she sits at &mdash; whether that&rsquo;s a newsroom, a PR war-room, a marketing studio or a C-suite briefing.
             </p>
             <p className="mt-5 font-serifText text-[16px] md:text-[18px] leading-[1.8] text-ink/75">
-              Beyond the wire, her independent civic‑media work — reels for Namaste Democracy and her own platform <span className="italic">Civic Lens</span> — has cumulatively crossed <span className="font-display text-ink">2 million+ views</span>, demonstrating reach earned without a paid push.
+              Off the wire, her work in independent civic media takes two forms: as part of the <span className="italic">Namaste Democracy</span> team, she anchored a reel that crossed <span className="font-display text-ink">1.3M+ views</span>; and on her own, she built and runs <span className="italic">Civic Lens</span> &mdash; concept, brand, scripting, shooting, editing and posting &mdash; end&#8209;to&#8209;end.
             </p>
             <p className="mt-5 font-serifText text-[16px] md:text-[18px] leading-[1.8] text-ink/75">
               Off the desk, she&rsquo;s a former Team India jump-rope athlete and national-level badminton player &mdash; habits that translate neatly to deadline environments: precision, repetition, nerve.

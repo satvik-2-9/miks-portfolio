@@ -50,9 +50,10 @@ export default function Hero() {
               </p>
             </div>
 
-            <p className="mt-6 font-serifText text-[15px] md:text-[17px] leading-[1.75] text-ink/70 max-w-[620px]">
-              {profile.secondaryParagraph}
-            </p>
+            <p
+              className="mt-6 font-serifText text-[15px] md:text-[17px] leading-[1.75] text-ink/70 max-w-[620px]"
+              dangerouslySetInnerHTML={{ __html: profile.secondaryParagraph }}
+            />
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a

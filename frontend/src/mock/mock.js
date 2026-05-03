@@ -18,7 +18,7 @@ export const profile = {
   leadParagraph:
     "A Multimedia Strategist and Communications Professional translating complex market data into narratives that move audiences \u2014 and markets. At Thomson Reuters, I file real\u2011time coverage that has moved equities and informed institutional desks from Mumbai to Manhattan.",
   secondaryParagraph:
-    "I broke the news on \u0024110B+ mega\u2011deals \u2014 from the Paramount\u2013Warner Bros. Discovery merger to Sun Pharma\u2013Organon \u2014 and have filed market\u2011moving reports on Tier\u20111 firms like NVIDIA and Google. Off the wire, I built independent civic\u2011media platforms whose Reels have crossed 2M+ views.",
+    "I've been part of the Reuters team filing on \u0024110B+ mega\u2011deals \u2014 from the Paramount\u2013Warner Bros. Discovery merger to Sun Pharma\u2013Organon \u2014 and contributed market\u2011moving reports on Tier\u20111 firms like NVIDIA and Google. Off the wire, my anchored reel for <em>Namaste Democracy</em> crossed 1.3M+ views, and I built and run my own civic\u2011media platform <em>Civic Lens</em> end\u2011to\u2011end.",
   stats: [
     { value: "2M+", label: "Combined reel views" },
     { value: "80+", label: "Filed stories at Reuters" },
@@ -116,16 +116,6 @@ export const experience = [
 export const featuredWork = [
   {
     id: "w1",
-    category: "M&A \u00B7 Pharma",
-    headline: "Sun Pharma to buy US drugmaker Organon for \u002411.75 billion in India\u2019s largest pharma deal",
-    dek: "An all\u2011cash mega\u2011deal that reshapes Indian pharma\u2019s outbound footprint. Filed for the global wire as the news broke.",
-    date: "Apr 2026",
-    outlet: "Thomson Reuters",
-    readTime: "Byline",
-    href: "https://www.reuters.com/business/healthcare-pharmaceuticals/sun-pharma-acquire-organon-1175-bln-all-cash-deal-2026-04-27/",
-  },
-  {
-    id: "w2",
     category: "M&A \u00B7 Real Estate",
     headline: "Blackstone\u2019s \u00244 billion New World talks stall over control, Bloomberg News reports",
     dek: "Inside the corporate stand\u2011off that froze one of Asia\u2019s most\u2011watched real\u2011estate deals.",
@@ -135,7 +125,27 @@ export const featuredWork = [
     href: "https://www.reuters.com/world/asia-pacific/blackstone-talks-4-billion-new-world-deal-stall-over-control-bloomberg-news-2026-03-04/",
   },
   {
+    id: "w2",
+    category: "M&A \u00B7 Pharma",
+    headline: "Sun Pharma to buy US drugmaker Organon for \u002411.75 billion in India\u2019s largest pharma deal",
+    dek: "An all\u2011cash mega\u2011deal that reshapes Indian pharma\u2019s outbound footprint. Filed for the global wire as the news broke.",
+    date: "Apr 2026",
+    outlet: "Thomson Reuters",
+    readTime: "Byline",
+    href: "https://www.reuters.com/business/healthcare-pharmaceuticals/sun-pharma-acquire-organon-1175-bln-all-cash-deal-2026-04-27/",
+  },
+  {
     id: "w3",
+    category: "Tech \u00B7 Cloud",
+    headline: "Amazon and Google launch multicloud service for faster connectivity",
+    dek: "A rare collaboration between hyperscalers \u2014 and what it signals for enterprise infrastructure economics.",
+    date: "Dec 2025",
+    outlet: "Thomson Reuters",
+    readTime: "Byline",
+    href: "https://www.reuters.com/business/retail-consumer/amazon-google-launch-multicloud-service-faster-connectivity-2025-12-01/",
+  },
+  {
+    id: "w4",
     category: "AI \u00B7 Regulation",
     headline: "UK regulators rush to assess risks of latest Anthropic AI model, FT reports",
     dek: "How British financial watchdogs are racing to keep pace with frontier AI \u2014 and what it means for the City.",
@@ -145,7 +155,7 @@ export const featuredWork = [
     href: "https://www.reuters.com/world/uk/uk-financial-regulators-rush-assess-risks-anthropics-latest-ai-model-ft-reports-2026-04-12/",
   },
   {
-    id: "w4",
+    id: "w5",
     category: "Geopolitics \u00B7 Energy",
     headline: "US probes suspicious oil trades made before Trump Iran pivots, source says",
     dek: "Tracking the trades that moved before the policy did \u2014 a window into the intersection of energy markets and statecraft.",
@@ -153,16 +163,6 @@ export const featuredWork = [
     outlet: "Thomson Reuters",
     readTime: "Byline",
     href: "https://www.reuters.com/business/energy/us-probes-suspicious-oil-trades-made-before-trump-iran-pivots-source-says-2026-04-15/",
-  },
-  {
-    id: "w5",
-    category: "Tech \u00B7 Cloud",
-    headline: "Amazon and Google launch multicloud service for faster connectivity",
-    dek: "A rare collaboration between hyperscalers \u2014 and what it signals for enterprise infrastructure economics.",
-    date: "Dec 2025",
-    outlet: "Thomson Reuters",
-    readTime: "Byline",
-    href: "https://www.reuters.com/business/retail-consumer/amazon-google-launch-multicloud-service-faster-connectivity-2025-12-01/",
   },
   {
     id: "w6",
@@ -263,7 +263,7 @@ export const featuredReel = {
 // On Camera \u2014 reels (vertical 9:16) + long-form (horizontal 16:9)
 // Categories: Namaste Democracy, Civic Lens, The Raisina Hills
 export const multimedia = [
-  // Top 2 Namaste Democracy reels
+  // Namaste Democracy reels (custom designed thumbnails by Mihika)
   {
     id: "nd1",
     type: "reel",
@@ -274,7 +274,7 @@ export const multimedia = [
     duration: "Reel",
     category: "Civic Explainer",
     href: "https://www.instagram.com/reel/C6gQKP1PG7o/",
-    embed: "https://www.instagram.com/reel/C6gQKP1PG7o/embed/",
+    poster: "/assets/nd-tiles/secularism.jpg",
   },
   {
     id: "nd2",
@@ -286,34 +286,21 @@ export const multimedia = [
     duration: "Reel",
     category: "Constitution Corner",
     href: "https://www.instagram.com/reel/C6dt0iLIi8G/",
-    embed: "https://www.instagram.com/reel/C6dt0iLIi8G/embed/",
-  },
-  // Top 2 Raisina Hills YouTube videos
-  {
-    id: "rh1",
-    type: "long",
-    platform: "YouTube",
-    outlet: "The Raisina Hills",
-    title: "Will Modi stay away from Xi & Sharif?",
-    blurb: "Long\u2011form anchor segment unpacking India\u2019s diplomatic posture across China and Pakistan.",
-    duration: "Video",
-    category: "Diplomacy",
-    href: "https://youtu.be/dzzdaAgdbhU",
-    youtubeId: "dzzdaAgdbhU",
+    poster: "/assets/nd-tiles/ambedkar.jpg",
   },
   {
-    id: "rh2",
-    type: "long",
-    platform: "YouTube",
-    outlet: "The Raisina Hills",
-    title: "India has a \u002412B millet opportunity",
-    blurb: "A reported segment on India\u2019s millet economy \u2014 export potential, policy push and farm\u2011gate impact.",
-    duration: "Video",
-    category: "Economy",
-    href: "https://youtu.be/OiayIiq2MSM",
-    youtubeId: "OiayIiq2MSM",
+    id: "nd3",
+    type: "reel",
+    platform: "Instagram",
+    outlet: "Namaste Democracy",
+    title: "17th Lok Sabha \u00B7 Women Session",
+    blurb: "A reported video on women\u2019s representation in the 17th Lok Sabha.",
+    duration: "Reel",
+    category: "Parliament",
+    href: "https://www.instagram.com/reel/C6NgxIxIGLp/",
+    poster: "/assets/nd-tiles/womens-reservation.jpg",
   },
-  // Civic Lens reels (extra)
+  // Civic Lens reels (Mihika\u2019s self-built platform)
   {
     id: "cl1",
     type: "reel",
@@ -324,7 +311,6 @@ export const multimedia = [
     duration: "Reel",
     category: "Politics",
     href: "https://www.instagram.com/reel/DCrHDz4NW5h/",
-    embed: "https://www.instagram.com/reel/DCrHDz4NW5h/embed/",
   },
   {
     id: "cl2",
@@ -336,7 +322,6 @@ export const multimedia = [
     duration: "Reel",
     category: "Civic Explainer",
     href: "https://www.instagram.com/reel/DKZkZZ6piOd/",
-    embed: "https://www.instagram.com/reel/DKZkZZ6piOd/embed/",
   },
   {
     id: "cl3",
@@ -348,19 +333,32 @@ export const multimedia = [
     duration: "Reel",
     category: "Civic Explainer",
     href: "https://www.instagram.com/reel/DK9h3yGtRDM/",
-    embed: "https://www.instagram.com/reel/DK9h3yGtRDM/embed/",
   },
-  // 3rd Namaste reel \u2014 to round out the catalog
+  // Long-form YouTube videos at the end
   {
-    id: "nd3",
-    type: "reel",
-    platform: "Instagram",
-    outlet: "Namaste Democracy",
-    title: "17th Lok Sabha \u00B7 Women Session",
-    blurb: "A reported video on women\u2019s representation in the 17th Lok Sabha.",
-    duration: "Reel",
-    category: "Parliament",
-    href: "https://www.instagram.com/reel/C6NgxIxIGLp/",
-    embed: "https://www.instagram.com/reel/C6NgxIxIGLp/embed/",
+    id: "rh1",
+    type: "long",
+    platform: "YouTube",
+    outlet: "The Raisina Hills",
+    title: "Will Modi stay away from Xi & Sharif?",
+    blurb: "Long\u2011form anchor segment unpacking India\u2019s diplomatic posture across China and Pakistan.",
+    duration: "Video",
+    category: "Diplomacy",
+    href: "https://youtu.be/dzzdaAgdbhU",
+    youtubeId: "dzzdaAgdbhU",
+    customPoster: "modi-xi",
+  },
+  {
+    id: "rh2",
+    type: "long",
+    platform: "YouTube",
+    outlet: "The Raisina Hills",
+    title: "India has a $12B millet opportunity",
+    blurb: "A reported segment on India\u2019s millet economy \u2014 export potential, policy push and farm\u2011gate impact.",
+    duration: "Video",
+    category: "Economy",
+    href: "https://youtu.be/OiayIiq2MSM",
+    youtubeId: "OiayIiq2MSM",
+    customPoster: "millet",
   },
 ];

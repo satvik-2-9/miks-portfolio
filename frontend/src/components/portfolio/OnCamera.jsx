@@ -212,15 +212,67 @@ export default function OnCamera() {
           <span className="ml-auto text-ink/50">{items.length} pieces</span>
         </div>
 
+        {/* Editorial Design Mosaic — Namaste Democracy thumbnails designed by Mihika on Canva */}
+        <div className="mb-12 border-y border-ink/15 py-10">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-6">
+            <div>
+              <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-oxblood mb-2">
+                Editorial Design &middot; Canva
+              </div>
+              <h3 className="font-display text-[26px] md:text-[32px] leading-[1.05] tracking-[-0.01em] text-ink max-w-[760px]">
+                Visual identity for <span className="italic">Namaste Democracy</span> &mdash; designed, art&#8209;directed and shipped.
+              </h3>
+            </div>
+            <p className="font-serifText text-[14px] text-ink/65 max-w-[320px]">
+              Cover thumbnails, brand grammar and typographic system for the platform&rsquo;s reels and posts.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-1.5">
+            {[
+              "ministerial-vibes","welfare-freebies","womens-reservation","one-mp","og-amma",
+              "freebies-state","welfare-trailer","scroll-census","misuse-funds","fake-news-trap",
+              "secularism","sir-fir","ambedkar","jharkhand","cost-free-speech",
+              "morality","first-amendment","bihar-congress","hurt-sentiments","free-speech-offensive",
+            ].map((slug) => (
+              <div key={slug} className="relative aspect-[9/16] overflow-hidden bg-ink/10 border border-ink/10 group/d">
+                <img
+                  src={`/assets/nd-tiles/${slug}.jpg`}
+                  alt={`Namaste Democracy thumbnail — ${slug.replace(/-/g, " ")}`}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/d:scale-[1.04]"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 font-mono text-[10px] tracking-[0.25em] uppercase text-ink/50">
+            20 of 100+ covers &middot; built in Canva
+          </div>
+        </div>
+
+
         {/* Uniform editorial grid for the rest. All cards share the same 4:5 aspect for clean alignment. */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {items.map((m) => {
             const isReel = m.type === "reel";
             const isLong = m.type === "long";
             const isArticle = m.type === "article";
-            const ytThumb = m.youtubeId
-              ? `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg`
-              : null;
+
+            // Custom editorial poster gradients for YouTube videos
+            const ytPosters = {
+              "modi-xi": {
+                gradient: "linear-gradient(145deg, #0f1d2e 0%, #1a3050 40%, #4d2a18 100%)",
+                eyebrow: "DIPLOMACY \u00B7 INDIA",
+                stat: "MODI \u00B7 XI \u00B7 SHARIF",
+              },
+              "millet": {
+                gradient: "linear-gradient(155deg, #2a1d05 0%, #5a3a0c 45%, #8a5a14 100%)",
+                eyebrow: "ECONOMY \u00B7 AGRI",
+                stat: "$12B",
+              },
+            };
+            const ytPoster = m.customPoster ? ytPosters[m.customPoster] : null;
 
             return (
               <a
@@ -231,14 +283,35 @@ export default function OnCamera() {
                 className="group block"
               >
                 <div className="relative overflow-hidden aspect-[4/5] bg-ink cursor-pointer">
-                  {/* Backdrop \u2014 YouTube thumbnail when available, gradient otherwise */}
-                  {ytThumb ? (
+                  {/* Backdrop: poster image (Namaste designs) > custom YT poster > gradient fallback */}
+                  {m.poster ? (
                     <img
-                      src={ytThumb}
+                      src={m.poster}
                       alt={m.title}
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                  ) : ytPoster ? (
+                    <>
+                      <div className="absolute inset-0" style={{ background: ytPoster.gradient }} />
+                      <div
+                        className="absolute inset-0 opacity-25 mix-blend-overlay"
+                        style={{
+                          backgroundImage:
+                            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.18),transparent_55%)]" />
+                      <div className="absolute inset-0 flex flex-col justify-center items-center text-paper text-center px-4">
+                        <div className="font-mono text-[9px] tracking-[0.4em] uppercase text-paper/80 mb-3">
+                          {ytPoster.eyebrow}
+                        </div>
+                        <div className="font-display text-[34px] md:text-[40px] leading-[0.95] tracking-[-0.02em] max-w-[210px]">
+                          {ytPoster.stat}
+                        </div>
+                        <div className="mt-3 w-10 h-px bg-paper/40" />
+                      </div>
+                    </>
                   ) : (
                     <>
                       <div
@@ -252,7 +325,7 @@ export default function OnCamera() {
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_55%)]" />
                     </>
                   )}
-                  {/* Slight shade overlay so text reads */}
+                  {/* Bottom shade overlay so text reads */}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent" />
 
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between font-mono text-[9px] tracking-[0.3em] text-paper/85">
