@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 import { experience } from "../../mock/mock";
 
 export default function Experience() {
@@ -13,10 +14,10 @@ export default function Experience() {
 
         <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
           <h2 className="font-display text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.01em] text-ink max-w-[760px]">
-            Four newsrooms. One narrative through‑line: <span className="italic">clarity, at speed.</span>
+            Five newsrooms, one independent venture. <span className="italic">One through&#8209;line: clarity, at speed.</span>
           </h2>
           <p className="font-serifText text-[15px] text-ink/65 max-w-[320px]">
-            From wire services to broadcast and brand, a timeline of roles that traded complexity for conviction.
+            From wire services to broadcast, brand and a self-run civic platform &mdash; a timeline of roles that traded complexity for conviction.
           </p>
         </div>
 
@@ -46,6 +47,17 @@ export default function Experience() {
                 <p className="mt-3 font-mono text-[10px] tracking-[0.25em] uppercase text-oxblood">
                   {job.kicker}
                 </p>
+                {job.link && (
+                  <a
+                    href={job.link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.22em] uppercase text-ink border-b border-ink/40 hover:text-oxblood hover:border-oxblood pb-0.5 transition-colors"
+                  >
+                    {job.link.label}
+                    <ArrowUpRight size={12} />
+                  </a>
+                )}
               </div>
 
               <div className="lg:col-span-6">

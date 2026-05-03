@@ -53,6 +53,21 @@ export const experience = [
     ],
   },
   {
+    id: "civiclens",
+    company: "Civic Lens",
+    role: "Founder \u00B7 Creator & Producer",
+    dates: "2024 \u2014 Present",
+    location: "Bengaluru, India \u00B7 Self\u2011initiated",
+    kicker: "Independent Platform \u00B7 Civic Explainers",
+    link: { label: "@civiclens_ on Instagram", href: "https://www.instagram.com/civiclens_?igsh=cWduYzA5MGkxMjll" },
+    bullets: [
+      "Founded and run an independent civic\u2011affairs Instagram platform \u2014 owning the full content lifecycle: concept, research, scripting, on\u2011camera presentation, shooting, editing, design, posting and community engagement.",
+      "Built the brand identity from scratch \u2014 visual language, tone of voice, content pillars and a distinctive explainer format for urban affairs and civic literacy.",
+      "Produce Reels that translate complex policy, governance and city\u2011planning issues into retention\u2011optimised, short\u2011form storytelling for a scrolling audience.",
+      "Operates end\u2011to\u2011end as a one\u2011person newsroom \u2014 demonstrating ownership across editorial, creative direction, production and digital growth.",
+    ],
+  },
+  {
     id: "namaste",
     company: "Namaste Democracy",
     role: "Broadcast Journalist & Content Strategist",
